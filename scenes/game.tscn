@@ -1,12 +1,15 @@
-[gd_scene load_steps=14 format=3 uid="uid://bt78fhsg7m3d"]
+[gd_scene load_steps=20 format=3 uid="uid://bt78fhsg7m3d"]
 
-[ext_resource type="Texture2D" uid="uid://c8npn64fxbj3s" path="res://sprites/background-cafe.png" id="1_0moln"]
+[ext_resource type="Texture2D" uid="uid://cdhq1oer2y8b5" path="res://sprites/background-cafe.png" id="1_0moln"]
+[ext_resource type="Script" path="res://scenes/game.gd" id="1_u8fak"]
 [ext_resource type="Script" path="res://scenes/player.gd" id="2_pxaym"]
 [ext_resource type="Texture2D" uid="uid://d1u18rjkvff0j" path="res://sprites/CoffeeGirl.png" id="3_j7n7v"]
 [ext_resource type="Texture2D" uid="uid://4ebs6jxeaf32" path="res://sprites/tea.png" id="4_kcky1"]
 [ext_resource type="Texture2D" uid="uid://dua360ueykee0" path="res://sprites/coffee-machine.png" id="5_kwjst"]
 [ext_resource type="Texture2D" uid="uid://gtnjyiuo0qna" path="res://sprites/register.png" id="6_elfuc"]
 [ext_resource type="PackedScene" uid="uid://c8trdq2r34yom" path="res://scenes/pink_cat.tscn" id="7_a6ele"]
+[ext_resource type="Script" path="res://scenes/sky.gd" id="8_23v2h"]
+[ext_resource type="Texture2D" uid="uid://ce7tiqj4tfylc" path="res://sprites/skys/sky1.png" id="8_fh1ml"]
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_kswwk"]
 normal = Vector2(1, 0)
@@ -27,7 +30,46 @@ size = Vector2(11, 17)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_7iwqw"]
 size = Vector2(11, 17)
 
+[sub_resource type="Animation" id="Animation_tw0dd"]
+resource_name = "sky_move"
+length = 120.0
+step = 1.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sky1:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 120),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(128, 6), Vector2(-64, 6)]
+}
+
+[sub_resource type="Animation" id="Animation_204ig"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sky1:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(128, 6)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_groea"]
+_data = {
+"RESET": SubResource("Animation_204ig"),
+"sky_move": SubResource("Animation_tw0dd")
+}
+
 [node name="Game" type="Node2D"]
+script = ExtResource("1_u8fak")
 
 [node name="Background-cafe" type="Sprite2D" parent="."]
 z_index = -1
@@ -97,3 +139,16 @@ position = Vector2(7, 24)
 
 [node name="PinkCat3" parent="." instance=ExtResource("7_a6ele")]
 position = Vector2(49, 13)
+
+[node name="Sky" type="Node2D" parent="."]
+script = ExtResource("8_23v2h")
+
+[node name="Sky1" type="Sprite2D" parent="Sky"]
+z_index = -2
+position = Vector2(128, 6)
+texture = ExtResource("8_fh1ml")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Sky"]
+libraries = {
+"": SubResource("AnimationLibrary_groea")
+}

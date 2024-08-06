@@ -13,12 +13,15 @@ config_version=5
 config/name="LOWREZJAM2024"
 run/main_scene="res://scenes/main.tscn"
 config/features=PackedStringArray("4.3", "GL Compatibility")
+boot_splash/image="res://aseprite/banana.png"
+boot_splash/use_filter=false
 config/icon="res://icon.svg"
 
 [display]
 
 window/size/viewport_width=64
 window/size/viewport_height=64
+window/size/mode=3
 window/stretch/mode="canvas_items"
 window/stretch/scale_mode="integer"
 
