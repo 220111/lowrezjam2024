@@ -1,12 +1,12 @@
 [gd_scene load_steps=14 format=3 uid="uid://bt78fhsg7m3d"]
 
-[ext_resource type="Texture2D" uid="uid://dbe2equ5e6npi" path="res://sprites/background-cafe.png" id="1_0moln"]
+[ext_resource type="Texture2D" uid="uid://c8npn64fxbj3s" path="res://sprites/background-cafe.png" id="1_0moln"]
 [ext_resource type="Script" path="res://scenes/player.gd" id="2_pxaym"]
 [ext_resource type="Texture2D" uid="uid://d1u18rjkvff0j" path="res://sprites/CoffeeGirl.png" id="3_j7n7v"]
 [ext_resource type="Texture2D" uid="uid://4ebs6jxeaf32" path="res://sprites/tea.png" id="4_kcky1"]
 [ext_resource type="Texture2D" uid="uid://dua360ueykee0" path="res://sprites/coffee-machine.png" id="5_kwjst"]
 [ext_resource type="Texture2D" uid="uid://gtnjyiuo0qna" path="res://sprites/register.png" id="6_elfuc"]
-[ext_resource type="Texture2D" uid="uid://bomo64nxipr71" path="res://sprites/pink-cat.png" id="7_lenik"]
+[ext_resource type="PackedScene" uid="uid://c8trdq2r34yom" path="res://scenes/pink_cat.tscn" id="7_a6ele"]
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_kswwk"]
 normal = Vector2(1, 0)
@@ -43,11 +43,12 @@ shape = SubResource("WorldBoundaryShape2D_kswwk")
 shape = SubResource("WorldBoundaryShape2D_iv4vi")
 
 [node name="CharacterBody2D" type="CharacterBody2D" parent="."]
-position = Vector2(7, 57)
+position = Vector2(14, 55)
 motion_mode = 1
 script = ExtResource("2_pxaym")
 
 [node name="Player" type="Sprite2D" parent="CharacterBody2D"]
+z_index = 1
 position = Vector2(0, -0.5)
 texture = ExtResource("3_j7n7v")
 
@@ -67,7 +68,7 @@ position = Vector2(8.5, 11.5)
 shape = SubResource("RectangleShape2D_48f4i")
 
 [node name="Tea" type="Area2D" parent="."]
-position = Vector2(27, 43)
+position = Vector2(0, 43)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Tea"]
 position = Vector2(5, 8)
@@ -78,7 +79,7 @@ texture = ExtResource("4_kcky1")
 centered = false
 
 [node name="Coffee" type="Area2D" parent="."]
-position = Vector2(9, 40)
+position = Vector2(22, 40)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Coffee"]
 position = Vector2(5.5, 10.5)
@@ -88,7 +89,11 @@ shape = SubResource("RectangleShape2D_7iwqw")
 texture = ExtResource("5_kwjst")
 centered = false
 
-[node name="Pink-cat" type="Sprite2D" parent="."]
-position = Vector2(51, 26)
-texture = ExtResource("7_lenik")
-centered = false
+[node name="PinkCat" parent="." instance=ExtResource("7_a6ele")]
+position = Vector2(23, 30)
+
+[node name="PinkCat2" parent="." instance=ExtResource("7_a6ele")]
+position = Vector2(7, 24)
+
+[node name="PinkCat3" parent="." instance=ExtResource("7_a6ele")]
+position = Vector2(49, 13)
