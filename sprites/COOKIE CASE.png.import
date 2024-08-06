@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dda81y78i1nct"
-path="res://.godot/imported/background-cafe.png-7d87b6b510a90836062004bf6e035060.ctex"
+uid="uid://dna4l1sclfghp"
+path="res://.godot/imported/COOKIE CASE.png-f1557b75c11ebd06e6a1bd9ff574725e.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://sprites/background-cafe.png"
-dest_files=["res://.godot/imported/background-cafe.png-7d87b6b510a90836062004bf6e035060.ctex"]
+source_file="res://sprites/COOKIE CASE.png"
+dest_files=["res://.godot/imported/COOKIE CASE.png-f1557b75c11ebd06e6a1bd9ff574725e.ctex"]
 
 [params]
 
