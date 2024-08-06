@@ -1,0 +1,94 @@
+[gd_scene load_steps=14 format=3 uid="uid://bt78fhsg7m3d"]
+
+[ext_resource type="Texture2D" uid="uid://dbe2equ5e6npi" path="res://sprites/background-cafe.png" id="1_0moln"]
+[ext_resource type="Script" path="res://scenes/player.gd" id="2_pxaym"]
+[ext_resource type="Texture2D" uid="uid://d1u18rjkvff0j" path="res://sprites/CoffeeGirl.png" id="3_j7n7v"]
+[ext_resource type="Texture2D" uid="uid://4ebs6jxeaf32" path="res://sprites/tea.png" id="4_kcky1"]
+[ext_resource type="Texture2D" uid="uid://dua360ueykee0" path="res://sprites/coffee-machine.png" id="5_kwjst"]
+[ext_resource type="Texture2D" uid="uid://gtnjyiuo0qna" path="res://sprites/register.png" id="6_elfuc"]
+[ext_resource type="Texture2D" uid="uid://bomo64nxipr71" path="res://sprites/pink-cat.png" id="7_lenik"]
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_kswwk"]
+normal = Vector2(1, 0)
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_iv4vi"]
+normal = Vector2(-1, 0)
+distance = -64.0
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_e0kdo"]
+size = Vector2(7, 12)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_48f4i"]
+size = Vector2(11, 17)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_y5q51"]
+size = Vector2(11, 17)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_7iwqw"]
+size = Vector2(11, 17)
+
+[node name="Game" type="Node2D"]
+
+[node name="Background-cafe" type="Sprite2D" parent="."]
+z_index = -1
+position = Vector2(32, 32)
+texture = ExtResource("1_0moln")
+
+[node name="walls" type="StaticBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="walls"]
+shape = SubResource("WorldBoundaryShape2D_kswwk")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="walls"]
+shape = SubResource("WorldBoundaryShape2D_iv4vi")
+
+[node name="CharacterBody2D" type="CharacterBody2D" parent="."]
+position = Vector2(7, 57)
+motion_mode = 1
+script = ExtResource("2_pxaym")
+
+[node name="Player" type="Sprite2D" parent="CharacterBody2D"]
+position = Vector2(0, -0.5)
+texture = ExtResource("3_j7n7v")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterBody2D"]
+position = Vector2(0.5, -1)
+shape = SubResource("RectangleShape2D_e0kdo")
+
+[node name="Register" type="Area2D" parent="."]
+position = Vector2(45, 40)
+
+[node name="Sprite2D" type="Sprite2D" parent="Register"]
+texture = ExtResource("6_elfuc")
+centered = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Register"]
+position = Vector2(8.5, 11.5)
+shape = SubResource("RectangleShape2D_48f4i")
+
+[node name="Tea" type="Area2D" parent="."]
+position = Vector2(27, 43)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Tea"]
+position = Vector2(5, 8)
+shape = SubResource("RectangleShape2D_y5q51")
+
+[node name="Sprite2D" type="Sprite2D" parent="Tea"]
+texture = ExtResource("4_kcky1")
+centered = false
+
+[node name="Coffee" type="Area2D" parent="."]
+position = Vector2(9, 40)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Coffee"]
+position = Vector2(5.5, 10.5)
+shape = SubResource("RectangleShape2D_7iwqw")
+
+[node name="Sprite2D" type="Sprite2D" parent="Coffee"]
+texture = ExtResource("5_kwjst")
+centered = false
+
+[node name="Pink-cat" type="Sprite2D" parent="."]
+position = Vector2(51, 26)
+texture = ExtResource("7_lenik")
+centered = false
