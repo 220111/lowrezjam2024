@@ -1,0 +1,9 @@
+[gd_resource type="ShaderMaterial" load_steps=2 format=3 uid="uid://c5atfro3fk3o"]
+
+[ext_resource type="Shader" path="res://2dShine.gdshader" id="1_imfg5"]
+
+[resource]
+shader = ExtResource("1_imfg5")
+shader_parameter/speed = 0.7
+shader_parameter/tint = Color(1, 1, 1, 1)
+shader_parameter/span = 1.0

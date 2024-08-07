@@ -1,17 +1,21 @@
-[gd_scene load_steps=22 format=3 uid="uid://bt78fhsg7m3d"]
+[gd_scene load_steps=30 format=3 uid="uid://bt78fhsg7m3d"]
 
-[ext_resource type="Texture2D" uid="uid://dda81y78i1nct" path="res://sprites/background-cafe.png" id="1_0moln"]
+[ext_resource type="Texture2D" uid="uid://pwb63ckq12rp" path="res://sprites/background-cafe.png" id="1_0moln"]
 [ext_resource type="Script" path="res://scenes/game.gd" id="1_u8fak"]
 [ext_resource type="Script" path="res://scenes/player.gd" id="2_pxaym"]
 [ext_resource type="Texture2D" uid="uid://d1u18rjkvff0j" path="res://sprites/CoffeeGirl.png" id="3_j7n7v"]
 [ext_resource type="Texture2D" uid="uid://4ebs6jxeaf32" path="res://sprites/tea.png" id="4_kcky1"]
+[ext_resource type="Texture2D" uid="uid://5yobe8vkq6j7" path="res://sprites/progress-bar.png" id="5_5qf0c"]
 [ext_resource type="Texture2D" uid="uid://dua360ueykee0" path="res://sprites/coffee-machine.png" id="5_kwjst"]
 [ext_resource type="Texture2D" uid="uid://gtnjyiuo0qna" path="res://sprites/register.png" id="6_elfuc"]
+[ext_resource type="Script" path="res://scenes/tool.gd" id="7_4kpw6"]
 [ext_resource type="PackedScene" uid="uid://c8trdq2r34yom" path="res://scenes/pink_cat.tscn" id="7_a6ele"]
 [ext_resource type="Script" path="res://scenes/sky.gd" id="8_23v2h"]
 [ext_resource type="Texture2D" uid="uid://bhqbkmr8yq5l2" path="res://sprites/skys/sky1.png" id="8_fh1ml"]
 [ext_resource type="Texture2D" uid="uid://dna4l1sclfghp" path="res://sprites/COOKIE CASE.png" id="11_h22t1"]
 [ext_resource type="Texture2D" uid="uid://diq66pxvysmkg" path="res://sprites/STACKS OF CUPS.png" id="12_qe1cu"]
+[ext_resource type="Texture2D" uid="uid://bynhpy14j0578" path="res://sprites/table.png" id="14_xymra"]
+[ext_resource type="Script" path="res://scenes/ui.gd" id="15_4nwae"]
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_kswwk"]
 normal = Vector2(1, 0)
@@ -27,10 +31,13 @@ size = Vector2(7, 12)
 size = Vector2(9, 17)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_y5q51"]
-size = Vector2(9, 17)
+size = Vector2(8, 17)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_7iwqw"]
-size = Vector2(9, 17)
+size = Vector2(8, 17)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_23143"]
+size = Vector2(7, 16)
 
 [sub_resource type="Animation" id="Animation_tw0dd"]
 resource_name = "sky_move"
@@ -70,11 +77,48 @@ _data = {
 "sky_move": SubResource("Animation_tw0dd")
 }
 
+[sub_resource type="Animation" id="Animation_pw8jd"]
+resource_name = "progress bar"
+length = 2.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("TextureProgressBar:value")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, 100.0]
+}
+
+[sub_resource type="Animation" id="Animation_snib3"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("TextureProgressBar:value")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [100.0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_8y566"]
+_data = {
+"RESET": SubResource("Animation_snib3"),
+"progress bar": SubResource("Animation_pw8jd")
+}
+
 [node name="Game" type="Node2D"]
 script = ExtResource("1_u8fak")
 
 [node name="Background-cafe" type="Sprite2D" parent="."]
-z_index = -1
+z_index = -2
 position = Vector2(32, 32)
 texture = ExtResource("1_0moln")
 
@@ -102,6 +146,7 @@ shape = SubResource("RectangleShape2D_e0kdo")
 
 [node name="Register" type="Area2D" parent="."]
 position = Vector2(45, 40)
+script = ExtResource("7_4kpw6")
 
 [node name="Sprite2D" type="Sprite2D" parent="Register"]
 texture = ExtResource("6_elfuc")
@@ -113,9 +158,10 @@ shape = SubResource("RectangleShape2D_48f4i")
 
 [node name="Tea" type="Area2D" parent="."]
 position = Vector2(0, 43)
+script = ExtResource("7_4kpw6")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Tea"]
-position = Vector2(5.5, 8)
+position = Vector2(5, 8)
 shape = SubResource("RectangleShape2D_y5q51")
 
 [node name="Sprite2D" type="Sprite2D" parent="Tea"]
@@ -124,14 +170,26 @@ centered = false
 
 [node name="Coffee" type="Area2D" parent="."]
 position = Vector2(17, 40)
+script = ExtResource("7_4kpw6")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Coffee"]
-position = Vector2(5.5, 10.5)
+position = Vector2(5, 10.5)
 shape = SubResource("RectangleShape2D_7iwqw")
 
 [node name="Sprite2D" type="Sprite2D" parent="Coffee"]
 texture = ExtResource("5_kwjst")
 centered = false
+
+[node name="CookieCase" type="Area2D" parent="."]
+position = Vector2(38, 46)
+script = ExtResource("7_4kpw6")
+
+[node name="Sprite2D" type="Sprite2D" parent="CookieCase"]
+texture = ExtResource("11_h22t1")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CookieCase"]
+position = Vector2(-0.5, 4)
+shape = SubResource("RectangleShape2D_23143")
 
 [node name="PinkCat" parent="." instance=ExtResource("7_a6ele")]
 position = Vector2(23, 30)
@@ -146,7 +204,7 @@ position = Vector2(49, 13)
 script = ExtResource("8_23v2h")
 
 [node name="Sky1" type="Sprite2D" parent="Sky"]
-z_index = -2
+z_index = -3
 position = Vector2(128, 6)
 texture = ExtResource("8_fh1ml")
 
@@ -155,11 +213,73 @@ libraries = {
 "": SubResource("AnimationLibrary_groea")
 }
 
-[node name="CookieCase" type="Sprite2D" parent="."]
-position = Vector2(38, 46)
-texture = ExtResource("11_h22t1")
-
 [node name="StacksOfCups" type="Sprite2D" parent="."]
 position = Vector2(14, 46)
 texture = ExtResource("12_qe1cu")
 flip_h = true
+
+[node name="Table" type="Sprite2D" parent="."]
+z_index = -1
+position = Vector2(23, 32)
+texture = ExtResource("14_xymra")
+
+[node name="Table2" type="Sprite2D" parent="."]
+z_index = -1
+position = Vector2(7, 26)
+texture = ExtResource("14_xymra")
+
+[node name="Table3" type="Sprite2D" parent="."]
+z_index = -1
+position = Vector2(39, 26)
+texture = ExtResource("14_xymra")
+
+[node name="Table4" type="Sprite2D" parent="."]
+z_index = -1
+position = Vector2(56, 31)
+texture = ExtResource("14_xymra")
+
+[node name="ActionTimer" type="Timer" parent="."]
+wait_time = 2.0
+one_shot = true
+
+[node name="UI" type="Control" parent="."]
+z_index = 5
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = 64.0
+offset_bottom = 64.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("15_4nwae")
+
+[node name="TextureProgressBar" type="TextureProgressBar" parent="UI"]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 1.3
+offset_top = -2.035
+offset_right = 7.3
+offset_bottom = -1.035
+grow_vertical = 0
+value = 100.0
+texture_under = ExtResource("5_5qf0c")
+texture_progress = ExtResource("5_5qf0c")
+tint_under = Color(0, 0, 0, 1)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="UI"]
+libraries = {
+"": SubResource("AnimationLibrary_8y566")
+}
+
+[connection signal="player_entered" from="Register" to="." method="set_money_mode"]
+[connection signal="player_exited" from="Register" to="." method="set_none_mode"]
+[connection signal="player_entered" from="Tea" to="." method="set_tea_mode"]
+[connection signal="player_exited" from="Tea" to="." method="set_none_mode"]
+[connection signal="player_entered" from="Coffee" to="." method="set_coffee_mode"]
+[connection signal="player_exited" from="Coffee" to="." method="set_none_mode"]
+[connection signal="player_entered" from="CookieCase" to="." method="set_cookie_mode"]
+[connection signal="player_exited" from="CookieCase" to="." method="set_none_mode"]
+[connection signal="animation_finished" from="UI/AnimationPlayer" to="UI" method="_anim_done"]
