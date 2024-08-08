@@ -1,0 +1,53 @@
+[gd_scene load_steps=8 format=3 uid="uid://dr3ygcn7mx0lc"]
+
+[ext_resource type="Texture2D" uid="uid://bb4tq6a85h67b" path="res://sprites/cats/BLUEY! (1).png" id="1_sknom"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_w6gej"]
+atlas = ExtResource("1_sknom")
+region = Rect2(0, 0, 7, 7)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ax0hr"]
+atlas = ExtResource("1_sknom")
+region = Rect2(7, 0, 7, 7)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qrmol"]
+atlas = ExtResource("1_sknom")
+region = Rect2(14, 0, 7, 7)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0b25g"]
+atlas = ExtResource("1_sknom")
+region = Rect2(21, 0, 7, 7)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0e2d8"]
+atlas = ExtResource("1_sknom")
+region = Rect2(28, 0, 7, 7)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_kubig"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_w6gej")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ax0hr")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qrmol")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0b25g")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0e2d8")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="BlueyCat" type="Node2D"]
+
+[node name="Bluey!" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_kubig")
+autoplay = "default"
+frame_progress = 0.231077

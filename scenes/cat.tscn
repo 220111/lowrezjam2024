@@ -1,0 +1,99 @@
+[gd_scene load_steps=18 format=3 uid="uid://c8trdq2r34yom"]
+
+[ext_resource type="Script" path="res://cat.gd" id="1_eqah7"]
+[ext_resource type="PackedScene" uid="uid://dtkchj25ikwyt" path="res://scenes/cats/brat_cat.tscn" id="2_m3t1c"]
+[ext_resource type="Texture2D" uid="uid://b668hivbq6atr" path="res://sprites/bubbles/bubble-coffee.png" id="3_nkk5e"]
+[ext_resource type="PackedScene" uid="uid://bjqqk11060gay" path="res://scenes/cats/pink_cat.tscn" id="3_wj7m5"]
+[ext_resource type="PackedScene" uid="uid://cyyffqkt75ocf" path="res://scenes/cats/vambiter_cat.tscn" id="4_45gva"]
+[ext_resource type="PackedScene" uid="uid://dr3ygcn7mx0lc" path="res://scenes/cats/bluey_cat.tscn" id="5_i8l23"]
+[ext_resource type="PackedScene" uid="uid://cn8tx0ycyfmiq" path="res://scenes/cats/mint_choco_chip_cat.tscn" id="6_vsvsb"]
+[ext_resource type="PackedScene" uid="uid://dj2r65lcqeaks" path="res://scenes/cats/pinky_pie_cat.tscn" id="7_38e1l"]
+[ext_resource type="PackedScene" uid="uid://ciua1ej8n722n" path="res://scenes/cats/purple_cat.tscn" id="8_ftuv6"]
+[ext_resource type="PackedScene" uid="uid://0mbyqhepjxgm" path="res://scenes/cats/orange_cat.tscn" id="9_t12sp"]
+[ext_resource type="PackedScene" uid="uid://cs2373ou1veip" path="res://scenes/cats/black_cat.tscn" id="10_ios27"]
+[ext_resource type="PackedScene" uid="uid://canxhdnijgxlw" path="res://scenes/cats/banana_cat.tscn" id="11_be0nm"]
+[ext_resource type="Texture2D" uid="uid://5yobe8vkq6j7" path="res://sprites/progress-bar.png" id="13_opn1e"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_xxb83"]
+size = Vector2(8, 6)
+
+[sub_resource type="Animation" id="Animation_hbdqi"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Bubble:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-2, -7)]
+}
+
+[sub_resource type="Animation" id="Animation_ryxc0"]
+resource_name = "bubble"
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Bubble:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(-2, -7), Vector2(-2, -6)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_fr8bl"]
+_data = {
+"RESET": SubResource("Animation_hbdqi"),
+"bubble": SubResource("Animation_ryxc0")
+}
+
+[node name="Cat" type="Node2D"]
+script = ExtResource("1_eqah7")
+cats = Array[PackedScene]([ExtResource("2_m3t1c"), ExtResource("3_wj7m5"), ExtResource("4_45gva"), ExtResource("5_i8l23"), ExtResource("6_vsvsb"), ExtResource("7_38e1l"), ExtResource("8_ftuv6"), ExtResource("9_t12sp"), ExtResource("10_ios27"), ExtResource("11_be0nm")])
+
+[node name="Area2D" type="Area2D" parent="."]
+collision_layer = 2
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("RectangleShape2D_xxb83")
+
+[node name="Bubble" type="Sprite2D" parent="."]
+position = Vector2(-2, -7)
+texture = ExtResource("3_nkk5e")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_fr8bl")
+}
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="TextureProgressBar" type="TextureProgressBar" parent="Control"]
+layout_mode = 1
+offset_left = 2.015
+offset_top = -3.995
+offset_right = 8.015
+offset_bottom = -2.995
+rotation = -1.5708
+max_value = 6.0
+value = 6.0
+texture_under = ExtResource("13_opn1e")
+texture_progress = ExtResource("13_opn1e")
+tint_under = Color(0.996347, 0.000658862, 0.0400719, 1)
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 45.0
+one_shot = true
+autostart = true

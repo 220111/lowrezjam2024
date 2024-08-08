@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bomo64nxipr71"
-path="res://.godot/imported/pink-cat.png-e0438bf7f1982bd352956fd6aa02992f.ctex"
+uid="uid://cefafelt7jg6c"
+path="res://.godot/imported/purrrrrple.png-de938fb92833b035b20a17c2364cd2f5.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://sprites/cats/pink-cat.png"
-dest_files=["res://.godot/imported/pink-cat.png-e0438bf7f1982bd352956fd6aa02992f.ctex"]
+source_file="res://sprites/cats/purrrrrple.png"
+dest_files=["res://.godot/imported/purrrrrple.png-de938fb92833b035b20a17c2364cd2f5.ctex"]
 
 [params]
 

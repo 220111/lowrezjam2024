@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://33iwyo1f7agb"
-path="res://.godot/imported/vambiter-kitty.png-3853f4f315bff10d543360d3f1e6f2bd.ctex"
+uid="uid://qbhptkxyyua8"
+path="res://.godot/imported/BRAT CAT (1).png-9367636809803c3c04826b8afb826714.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://sprites/cats/vambiter-kitty.png"
-dest_files=["res://.godot/imported/vambiter-kitty.png-3853f4f315bff10d543360d3f1e6f2bd.ctex"]
+source_file="res://sprites/cats/BRAT CAT (1).png"
+dest_files=["res://.godot/imported/BRAT CAT (1).png-9367636809803c3c04826b8afb826714.ctex"]
 
 [params]
 

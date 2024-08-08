@@ -1,0 +1,41 @@
+[gd_scene load_steps=5 format=3 uid="uid://bjqqk11060gay"]
+
+[ext_resource type="Texture2D" uid="uid://ch34w7tpgkcw" path="res://sprites/cats/kitty meow meow ready for the pink pony club (1).png" id="1_1trso"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8p6ci"]
+atlas = ExtResource("1_1trso")
+region = Rect2(0, 0, 7, 7)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_as1s8"]
+atlas = ExtResource("1_1trso")
+region = Rect2(7, 0, 7, 7)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_idhip"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8p6ci")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_as1s8")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8p6ci")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8p6ci")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8p6ci")
+}],
+"loop": true,
+"name": &"default",
+"speed": 1.0
+}]
+
+[node name="PinkCat" type="Node2D"]
+
+[node name="Pink-cat" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_idhip")
+autoplay = "default"
+frame_progress = 0.816073

@@ -1,4 +1,4 @@
-[gd_scene load_steps=30 format=3 uid="uid://bt78fhsg7m3d"]
+[gd_scene load_steps=35 format=3 uid="uid://bt78fhsg7m3d"]
 
 [ext_resource type="Texture2D" uid="uid://pwb63ckq12rp" path="res://sprites/background-cafe.png" id="1_0moln"]
 [ext_resource type="Script" path="res://scenes/game.gd" id="1_u8fak"]
@@ -9,13 +9,16 @@
 [ext_resource type="Texture2D" uid="uid://dua360ueykee0" path="res://sprites/coffee-machine.png" id="5_kwjst"]
 [ext_resource type="Texture2D" uid="uid://gtnjyiuo0qna" path="res://sprites/register.png" id="6_elfuc"]
 [ext_resource type="Script" path="res://scenes/tool.gd" id="7_4kpw6"]
-[ext_resource type="PackedScene" uid="uid://c8trdq2r34yom" path="res://scenes/pink_cat.tscn" id="7_a6ele"]
 [ext_resource type="Script" path="res://scenes/sky.gd" id="8_23v2h"]
 [ext_resource type="Texture2D" uid="uid://bhqbkmr8yq5l2" path="res://sprites/skys/sky1.png" id="8_fh1ml"]
 [ext_resource type="Texture2D" uid="uid://dna4l1sclfghp" path="res://sprites/COOKIE CASE.png" id="11_h22t1"]
 [ext_resource type="Texture2D" uid="uid://diq66pxvysmkg" path="res://sprites/STACKS OF CUPS.png" id="12_qe1cu"]
 [ext_resource type="Texture2D" uid="uid://bynhpy14j0578" path="res://sprites/table.png" id="14_xymra"]
 [ext_resource type="Script" path="res://scenes/ui.gd" id="15_4nwae"]
+[ext_resource type="Texture2D" uid="uid://bbd2blfvb07yn" path="res://sprites/coffee coffee yummy yummy.png" id="16_oh6jc"]
+[ext_resource type="FontFile" uid="uid://dwsp28o11ifrn" path="res://m3x6.ttf" id="17_wk7tc"]
+[ext_resource type="Texture2D" uid="uid://cy0bfuvr5sqw2" path="res://sprites/tea tea yucky yucky.png" id="18_en371"]
+[ext_resource type="Texture2D" uid="uid://liibe7o1jynv" path="res://sprites/COOKIE YUMMY YUMMY.png" id="19_6dhyc"]
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_kswwk"]
 normal = Vector2(1, 0)
@@ -39,6 +42,21 @@ size = Vector2(8, 17)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_23143"]
 size = Vector2(7, 16)
 
+[sub_resource type="Animation" id="Animation_204ig"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sky1:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(128, 6)]
+}
+
 [sub_resource type="Animation" id="Animation_tw0dd"]
 resource_name = "sky_move"
 length = 120.0
@@ -56,25 +74,25 @@ tracks/0/keys = {
 "values": [Vector2(128, 6), Vector2(-64, 6)]
 }
 
-[sub_resource type="Animation" id="Animation_204ig"]
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_groea"]
+_data = {
+"RESET": SubResource("Animation_204ig"),
+"sky_move": SubResource("Animation_tw0dd")
+}
+
+[sub_resource type="Animation" id="Animation_snib3"]
 length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Sky1:position")
+tracks/0/path = NodePath("TextureProgressBar:value")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector2(128, 6)]
-}
-
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_groea"]
-_data = {
-"RESET": SubResource("Animation_204ig"),
-"sky_move": SubResource("Animation_tw0dd")
+"values": [12.0]
 }
 
 [sub_resource type="Animation" id="Animation_pw8jd"]
@@ -90,22 +108,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0, 2),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
-"values": [0.0, 100.0]
-}
-
-[sub_resource type="Animation" id="Animation_snib3"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("TextureProgressBar:value")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [100.0]
+"values": [0.0, 12.0]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_8y566"]
@@ -114,8 +117,19 @@ _data = {
 "progress bar": SubResource("Animation_pw8jd")
 }
 
+[sub_resource type="LabelSettings" id="LabelSettings_rd4jx"]
+line_spacing = 0.0
+font = ExtResource("17_wk7tc")
+font_color = Color(0, 0, 0, 1)
+outline_color = Color(0, 0, 0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_qyopn"]
+font = ExtResource("17_wk7tc")
+font_color = Color(0, 0, 0, 1)
+
 [node name="Game" type="Node2D"]
 script = ExtResource("1_u8fak")
+cat_spots = Array[Vector2]([Vector2(23, 30), Vector2(7, 24), Vector2(48, 13), Vector2(56, 13), Vector2(56, 29), Vector2(39, 24)])
 
 [node name="Background-cafe" type="Sprite2D" parent="."]
 z_index = -2
@@ -126,12 +140,14 @@ texture = ExtResource("1_0moln")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="walls"]
 shape = SubResource("WorldBoundaryShape2D_kswwk")
+debug_color = Color(0, 0.792157, 0.921569, 0)
 
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="walls"]
 shape = SubResource("WorldBoundaryShape2D_iv4vi")
+debug_color = Color(0, 0.6, 0.701961, 0)
 
 [node name="CharacterBody2D" type="CharacterBody2D" parent="."]
-position = Vector2(14, 55)
+position = Vector2(46, 57)
 motion_mode = 1
 script = ExtResource("2_pxaym")
 
@@ -169,7 +185,7 @@ texture = ExtResource("4_kcky1")
 centered = false
 
 [node name="Coffee" type="Area2D" parent="."]
-position = Vector2(17, 40)
+position = Vector2(32, 40)
 script = ExtResource("7_4kpw6")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Coffee"]
@@ -181,7 +197,7 @@ texture = ExtResource("5_kwjst")
 centered = false
 
 [node name="CookieCase" type="Area2D" parent="."]
-position = Vector2(38, 46)
+position = Vector2(21, 46)
 script = ExtResource("7_4kpw6")
 
 [node name="Sprite2D" type="Sprite2D" parent="CookieCase"]
@@ -190,15 +206,6 @@ texture = ExtResource("11_h22t1")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="CookieCase"]
 position = Vector2(-0.5, 4)
 shape = SubResource("RectangleShape2D_23143")
-
-[node name="PinkCat" parent="." instance=ExtResource("7_a6ele")]
-position = Vector2(23, 30)
-
-[node name="PinkCat2" parent="." instance=ExtResource("7_a6ele")]
-position = Vector2(7, 24)
-
-[node name="PinkCat3" parent="." instance=ExtResource("7_a6ele")]
-position = Vector2(49, 13)
 
 [node name="Sky" type="Node2D" parent="."]
 script = ExtResource("8_23v2h")
@@ -214,9 +221,18 @@ libraries = {
 }
 
 [node name="StacksOfCups" type="Sprite2D" parent="."]
-position = Vector2(14, 46)
+position = Vector2(31, 46)
 texture = ExtResource("12_qe1cu")
 flip_h = true
+region_enabled = true
+region_rect = Rect2(0, 0, 2, 8)
+
+[node name="StacksOfCups2" type="Sprite2D" parent="."]
+position = Vector2(12, 46)
+texture = ExtResource("12_qe1cu")
+flip_h = true
+region_enabled = true
+region_rect = Rect2(3, 0, 2, 8)
 
 [node name="Table" type="Sprite2D" parent="."]
 z_index = -1
@@ -238,8 +254,8 @@ z_index = -1
 position = Vector2(56, 31)
 texture = ExtResource("14_xymra")
 
-[node name="ActionTimer" type="Timer" parent="."]
-wait_time = 2.0
+[node name="CatTimer" type="Timer" parent="."]
+wait_time = 10.0
 one_shot = true
 
 [node name="UI" type="Control" parent="."]
@@ -259,12 +275,14 @@ layout_mode = 1
 anchors_preset = 2
 anchor_top = 1.0
 anchor_bottom = 1.0
-offset_left = 1.3
-offset_top = -2.035
-offset_right = 7.3
-offset_bottom = -1.035
+offset_left = 1.0
+offset_top = -3.0
+offset_right = 7.0
+offset_bottom = -2.0
 grow_vertical = 0
-value = 100.0
+scale = Vector2(2, 2)
+max_value = 12.0
+value = 12.0
 texture_under = ExtResource("5_5qf0c")
 texture_progress = ExtResource("5_5qf0c")
 tint_under = Color(0, 0, 0, 1)
@@ -273,6 +291,80 @@ tint_under = Color(0, 0, 0, 1)
 libraries = {
 "": SubResource("AnimationLibrary_8y566")
 }
+
+[node name="ScoreLabel" type="Label" parent="UI"]
+layout_mode = 0
+offset_left = 1.025
+offset_top = -4.4
+offset_right = 5.025
+offset_bottom = 8.6
+text = "0"
+label_settings = SubResource("LabelSettings_rd4jx")
+
+[node name="Control" type="Control" parent="UI"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = 1.0
+offset_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="UI/Control"]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -20.0
+offset_top = -13.0
+grow_horizontal = 0
+grow_vertical = 0
+alignment = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="UI/Control/HBoxContainer"]
+custom_minimum_size = Vector2(7, 0)
+layout_mode = 2
+
+[node name="Sprite2D" type="Sprite2D" parent="UI/Control/HBoxContainer/HBoxContainer"]
+position = Vector2(-3.17, 7)
+scale = Vector2(2, 2)
+texture = ExtResource("18_en371")
+
+[node name="TeaLabel" type="Label" parent="UI/Control/HBoxContainer/HBoxContainer"]
+layout_mode = 2
+text = "0"
+label_settings = SubResource("LabelSettings_qyopn")
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="UI/Control/HBoxContainer"]
+custom_minimum_size = Vector2(5, 0)
+layout_mode = 2
+
+[node name="Sprite2D" type="Sprite2D" parent="UI/Control/HBoxContainer/HBoxContainer2"]
+position = Vector2(-5, 7)
+scale = Vector2(2, 2)
+texture = ExtResource("19_6dhyc")
+
+[node name="CookieLabel" type="Label" parent="UI/Control/HBoxContainer/HBoxContainer2"]
+layout_mode = 2
+text = "0"
+label_settings = SubResource("LabelSettings_qyopn")
+
+[node name="HBoxContainer3" type="HBoxContainer" parent="UI/Control/HBoxContainer"]
+custom_minimum_size = Vector2(3.715, 0)
+layout_mode = 2
+
+[node name="Sprite2D" type="Sprite2D" parent="UI/Control/HBoxContainer/HBoxContainer3"]
+position = Vector2(-3.17, 7)
+scale = Vector2(2, 2)
+texture = ExtResource("16_oh6jc")
+
+[node name="CoffeeLabel" type="Label" parent="UI/Control/HBoxContainer/HBoxContainer3"]
+layout_mode = 2
+text = "0"
+label_settings = SubResource("LabelSettings_qyopn")
 
 [connection signal="player_entered" from="Register" to="." method="set_money_mode"]
 [connection signal="player_exited" from="Register" to="." method="set_none_mode"]

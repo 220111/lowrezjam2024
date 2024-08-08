@@ -1,0 +1,69 @@
+[gd_scene load_steps=6 format=3 uid="uid://cn8tx0ycyfmiq"]
+
+[ext_resource type="Texture2D" uid="uid://b5udkb0yd0qfh" path="res://sprites/cats/MINT CHOCOLATE CHIP (is he a cat or a muppet________) (1).png" id="1_52l7m"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ifh2a"]
+atlas = ExtResource("1_52l7m")
+region = Rect2(0, 0, 7, 7)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_exy15"]
+atlas = ExtResource("1_52l7m")
+region = Rect2(7, 0, 7, 7)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4fv2e"]
+atlas = ExtResource("1_52l7m")
+region = Rect2(14, 0, 7, 7)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_4phdl"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ifh2a")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_exy15")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4fv2e")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ifh2a")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ifh2a")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ifh2a")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ifh2a")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ifh2a")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ifh2a")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ifh2a")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ifh2a")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ifh2a")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ifh2a")
+}],
+"loop": true,
+"name": &"default",
+"speed": 4.0
+}]
+
+[node name="MintChocoChipCat" type="Node2D"]
+
+[node name="MintChocolateChip(isHeACatOrAMuppet)" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_4phdl")
+autoplay = "default"
+frame_progress = 0.885311

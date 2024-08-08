@@ -1,0 +1,52 @@
+[gd_scene load_steps=8 format=3 uid="uid://dj2r65lcqeaks"]
+
+[ext_resource type="Texture2D" uid="uid://mbb82amul1tf" path="res://sprites/cats/pinky pie.png" id="1_ortbf"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vdmhu"]
+atlas = ExtResource("1_ortbf")
+region = Rect2(0, 0, 7, 6)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_btuf5"]
+atlas = ExtResource("1_ortbf")
+region = Rect2(7, 0, 7, 6)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_askpe"]
+atlas = ExtResource("1_ortbf")
+region = Rect2(14, 0, 7, 6)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lfowq"]
+atlas = ExtResource("1_ortbf")
+region = Rect2(21, 0, 7, 6)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2xi2l"]
+atlas = ExtResource("1_ortbf")
+region = Rect2(28, 0, 7, 6)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_f1p72"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vdmhu")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_btuf5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_askpe")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_lfowq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2xi2l")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="PinkyPieCat" type="Node2D"]
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_f1p72")
+autoplay = "default"

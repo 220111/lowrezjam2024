@@ -1,0 +1,53 @@
+[gd_scene load_steps=8 format=3 uid="uid://cs2373ou1veip"]
+
+[ext_resource type="Texture2D" uid="uid://bimk4eu0xyf7d" path="res://sprites/cats/black cat animated.png" id="1_mgdp8"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bkm26"]
+atlas = ExtResource("1_mgdp8")
+region = Rect2(0, 0, 7, 6)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hc036"]
+atlas = ExtResource("1_mgdp8")
+region = Rect2(7, 0, 7, 6)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_oshui"]
+atlas = ExtResource("1_mgdp8")
+region = Rect2(14, 0, 7, 6)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cwr0n"]
+atlas = ExtResource("1_mgdp8")
+region = Rect2(21, 0, 7, 6)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mrwy3"]
+atlas = ExtResource("1_mgdp8")
+region = Rect2(28, 0, 7, 6)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_kjohr"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bkm26")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hc036")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_oshui")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_cwr0n")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mrwy3")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="BlackCat" type="Node2D"]
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_kjohr")
+autoplay = "default"
+frame_progress = 0.222747

@@ -1,0 +1,68 @@
+[gd_scene load_steps=10 format=3 uid="uid://canxhdnijgxlw"]
+
+[ext_resource type="Texture2D" uid="uid://b2piu3p5ay0me" path="res://sprites/cats/banananananana turn head.png" id="1_3lkdf"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ejj72"]
+atlas = ExtResource("1_3lkdf")
+region = Rect2(0, 0, 7, 6)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_84vrp"]
+atlas = ExtResource("1_3lkdf")
+region = Rect2(7, 0, 7, 6)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_56kis"]
+atlas = ExtResource("1_3lkdf")
+region = Rect2(14, 0, 7, 6)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_m0aep"]
+atlas = ExtResource("1_3lkdf")
+region = Rect2(21, 0, 7, 6)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ji6pi"]
+atlas = ExtResource("1_3lkdf")
+region = Rect2(28, 0, 7, 6)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pbkuh"]
+atlas = ExtResource("1_3lkdf")
+region = Rect2(35, 0, 7, 6)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kbkk5"]
+atlas = ExtResource("1_3lkdf")
+region = Rect2(42, 0, 7, 6)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_6p0xq"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ejj72")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_84vrp")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_56kis")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_m0aep")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ji6pi")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pbkuh")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kbkk5")
+}],
+"loop": true,
+"name": &"default",
+"speed": 4.0
+}]
+
+[node name="BananaCat" type="Node2D"]
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_6p0xq")
+autoplay = "default"
+frame = 1
+frame_progress = 0.381618

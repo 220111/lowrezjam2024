@@ -1,0 +1,57 @@
+[gd_scene load_steps=6 format=3 uid="uid://cyyffqkt75ocf"]
+
+[ext_resource type="Texture2D" uid="uid://chdi5e06qmdy5" path="res://sprites/cats/vambiter kitty (1).png" id="1_mh6ol"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8n0cu"]
+atlas = ExtResource("1_mh6ol")
+region = Rect2(0, 0, 7, 7)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_u153p"]
+atlas = ExtResource("1_mh6ol")
+region = Rect2(7, 0, 7, 7)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7nwgh"]
+atlas = ExtResource("1_mh6ol")
+region = Rect2(14, 0, 7, 7)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_aglgl"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8n0cu")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_u153p")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7nwgh")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8n0cu")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8n0cu")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8n0cu")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8n0cu")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8n0cu")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8n0cu")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="VambiterCat" type="Node2D"]
+
+[node name="Vambiter-kitty" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_aglgl")
+autoplay = "default"
+frame_progress = 0.642085
