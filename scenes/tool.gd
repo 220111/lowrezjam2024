@@ -6,6 +6,7 @@ signal player_exited
 
 const SHINEMATERIAL = preload("res://shinematerial.tres")
 @onready var sprite_2d: Sprite2D = $Sprite2D
+@onready var audio_stream_player_2d: AudioStreamPlayer2D = $AudioStreamPlayer2D
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -21,3 +22,6 @@ func _exited(body: Node2D):
 	if(body as CharacterBody2D):
 		sprite_2d.material = null
 		player_exited.emit()
+
+func play_fx():
+	audio_stream_player_2d.play()

@@ -1,0 +1,85 @@
+[gd_scene load_steps=6 format=3 uid="uid://bx4qdc701whdy"]
+
+[ext_resource type="Script" path="res://scenes/game_over.gd" id="1_b3r2p"]
+[ext_resource type="FontFile" uid="uid://dwsp28o11ifrn" path="res://m3x6.ttf" id="2_emnuo"]
+[ext_resource type="Texture2D" uid="uid://beqsak0udurl4" path="res://sprites/button-play.png" id="3_45di6"]
+[ext_resource type="AudioStream" uid="uid://ci2tmkyboinvi" path="res://audio/Bartender.mp3" id="4_8iw2a"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_lvlbo"]
+line_spacing = 0.0
+font = ExtResource("2_emnuo")
+font_color = Color(0, 0, 0, 1)
+outline_color = Color(0, 0, 0, 1)
+
+[node name="game_over" type="Control"]
+z_index = 1
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_b3r2p")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Text2" type="Label" parent="VBoxContainer"]
+layout_mode = 2
+text = "Game Over"
+label_settings = SubResource("LabelSettings_lvlbo")
+horizontal_alignment = 1
+
+[node name="Text" type="Label" parent="VBoxContainer"]
+layout_mode = 2
+text = "Score:"
+label_settings = SubResource("LabelSettings_lvlbo")
+horizontal_alignment = 1
+
+[node name="ScoreLabel" type="Label" parent="VBoxContainer"]
+layout_mode = 2
+text = "1238"
+label_settings = SubResource("LabelSettings_lvlbo")
+horizontal_alignment = 1
+
+[node name="ScoreLabel2" type="Label" parent="VBoxContainer"]
+layout_mode = 2
+text = " "
+label_settings = SubResource("LabelSettings_lvlbo")
+horizontal_alignment = 1
+
+[node name="ColorRect" type="ColorRect" parent="."]
+z_index = -1
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 1, 0.556863, 1)
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_8iw2a")
+autoplay = true
+
+[node name="PlayButton" type="TextureButton" parent="."]
+z_index = 4
+layout_mode = 2
+offset_left = 9.5
+offset_top = 52.0
+offset_right = 54.5
+offset_bottom = 63.0
+size_flags_horizontal = 4
+size_flags_vertical = 4
+size_flags_stretch_ratio = 0.0
+texture_normal = ExtResource("3_45di6")
+metadata/_edit_use_anchors_ = true
+
+[connection signal="pressed" from="PlayButton" to="." method="reset_game"]

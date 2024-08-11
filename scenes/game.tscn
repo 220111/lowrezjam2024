@@ -1,4 +1,4 @@
-[gd_scene load_steps=35 format=3 uid="uid://bt78fhsg7m3d"]
+[gd_scene load_steps=42 format=3 uid="uid://bt78fhsg7m3d"]
 
 [ext_resource type="Texture2D" uid="uid://pwb63ckq12rp" path="res://sprites/background-cafe.png" id="1_0moln"]
 [ext_resource type="Script" path="res://scenes/game.gd" id="1_u8fak"]
@@ -9,16 +9,23 @@
 [ext_resource type="Texture2D" uid="uid://dua360ueykee0" path="res://sprites/coffee-machine.png" id="5_kwjst"]
 [ext_resource type="Texture2D" uid="uid://gtnjyiuo0qna" path="res://sprites/register.png" id="6_elfuc"]
 [ext_resource type="Script" path="res://scenes/tool.gd" id="7_4kpw6"]
+[ext_resource type="AudioStream" uid="uid://dejsxssrhehlj" path="res://audio/gold_sack.wav" id="7_vt0ur"]
 [ext_resource type="Script" path="res://scenes/sky.gd" id="8_23v2h"]
 [ext_resource type="Texture2D" uid="uid://bhqbkmr8yq5l2" path="res://sprites/skys/sky1.png" id="8_fh1ml"]
+[ext_resource type="AudioStream" uid="uid://dl4csiv0pwg5o" path="res://audio/sirldrende vann1.wav" id="9_5o6dj"]
 [ext_resource type="Texture2D" uid="uid://dna4l1sclfghp" path="res://sprites/COOKIE CASE.png" id="11_h22t1"]
+[ext_resource type="AudioStream" uid="uid://bk0ymkckqqlok" path="res://audio/Acid Bubble.wav" id="11_wn2ed"]
 [ext_resource type="Texture2D" uid="uid://diq66pxvysmkg" path="res://sprites/STACKS OF CUPS.png" id="12_qe1cu"]
+[ext_resource type="AudioStream" uid="uid://c7hrcmn52krdu" path="res://audio/Sound fx pack/power up.ogg" id="13_7bjx3"]
 [ext_resource type="Texture2D" uid="uid://bynhpy14j0578" path="res://sprites/table.png" id="14_xymra"]
 [ext_resource type="Script" path="res://scenes/ui.gd" id="15_4nwae"]
 [ext_resource type="Texture2D" uid="uid://bbd2blfvb07yn" path="res://sprites/coffee coffee yummy yummy.png" id="16_oh6jc"]
 [ext_resource type="FontFile" uid="uid://dwsp28o11ifrn" path="res://m3x6.ttf" id="17_wk7tc"]
 [ext_resource type="Texture2D" uid="uid://cy0bfuvr5sqw2" path="res://sprites/tea tea yucky yucky.png" id="18_en371"]
 [ext_resource type="Texture2D" uid="uid://liibe7o1jynv" path="res://sprites/COOKIE YUMMY YUMMY.png" id="19_6dhyc"]
+[ext_resource type="AudioStream" uid="uid://ct53y7syakgqh" path="res://audio/Cue.mp3" id="20_qpcpa"]
+[ext_resource type="Texture2D" uid="uid://v3qsn6ib3fxs" path="res://sprites/health-bar-bottom.png" id="20_wluu0"]
+[ext_resource type="Texture2D" uid="uid://bvfif55bhxssi" path="res://sprites/health-bar-top.png" id="21_dxc2e"]
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_kswwk"]
 normal = Vector2(1, 0)
@@ -172,6 +179,10 @@ centered = false
 position = Vector2(9.5, 11.5)
 shape = SubResource("RectangleShape2D_48f4i")
 
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="Register"]
+stream = ExtResource("7_vt0ur")
+volume_db = 5.0
+
 [node name="Tea" type="Area2D" parent="."]
 position = Vector2(0, 43)
 script = ExtResource("7_4kpw6")
@@ -183,6 +194,10 @@ shape = SubResource("RectangleShape2D_y5q51")
 [node name="Sprite2D" type="Sprite2D" parent="Tea"]
 texture = ExtResource("4_kcky1")
 centered = false
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="Tea"]
+stream = ExtResource("9_5o6dj")
+volume_db = 7.0
 
 [node name="Coffee" type="Area2D" parent="."]
 position = Vector2(32, 40)
@@ -196,6 +211,10 @@ shape = SubResource("RectangleShape2D_7iwqw")
 texture = ExtResource("5_kwjst")
 centered = false
 
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="Coffee"]
+stream = ExtResource("11_wn2ed")
+volume_db = 5.0
+
 [node name="CookieCase" type="Area2D" parent="."]
 position = Vector2(21, 46)
 script = ExtResource("7_4kpw6")
@@ -206,6 +225,10 @@ texture = ExtResource("11_h22t1")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="CookieCase"]
 position = Vector2(-0.5, 4)
 shape = SubResource("RectangleShape2D_23143")
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="CookieCase"]
+stream = ExtResource("13_7bjx3")
+volume_db = 10.0
 
 [node name="Sky" type="Node2D" parent="."]
 script = ExtResource("8_23v2h")
@@ -275,9 +298,9 @@ layout_mode = 1
 anchors_preset = 2
 anchor_top = 1.0
 anchor_bottom = 1.0
-offset_left = 1.0
+offset_left = 20.17
 offset_top = -3.0
-offset_right = 7.0
+offset_right = 26.17
 offset_bottom = -2.0
 grow_vertical = 0
 scale = Vector2(2, 2)
@@ -286,6 +309,21 @@ value = 12.0
 texture_under = ExtResource("5_5qf0c")
 texture_progress = ExtResource("5_5qf0c")
 tint_under = Color(0, 0, 0, 1)
+
+[node name="HealthProgressBar" type="TextureProgressBar" parent="UI"]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 1.26
+offset_top = -3.98
+offset_right = 19.26
+offset_bottom = -0.98
+grow_vertical = 0
+max_value = 3.0
+value = 3.0
+texture_under = ExtResource("20_wluu0")
+texture_progress = ExtResource("21_dxc2e")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="UI"]
 libraries = {
@@ -365,6 +403,10 @@ texture = ExtResource("16_oh6jc")
 layout_mode = 2
 text = "0"
 label_settings = SubResource("LabelSettings_qyopn")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("20_qpcpa")
+autoplay = true
 
 [connection signal="player_entered" from="Register" to="." method="set_money_mode"]
 [connection signal="player_exited" from="Register" to="." method="set_none_mode"]

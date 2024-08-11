@@ -1,0 +1,19 @@
+[remap]
+
+importer="oggvorbisstr"
+type="AudioStreamOggVorbis"
+uid="uid://dnqutfxiir188"
+path="res://.godot/imported/accept (Delay).ogg-d3371f3495117c63de67c72591acf77e.oggvorbisstr"
+
+[deps]
+
+source_file="res://audio/Sound fx pack/accept (Delay).ogg"
+dest_files=["res://.godot/imported/accept (Delay).ogg-d3371f3495117c63de67c72591acf77e.oggvorbisstr"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

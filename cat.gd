@@ -10,6 +10,8 @@ const BUBBLE_COFFEE = preload("res://sprites/bubbles/bubble-coffee.png")
 const BUBBLE_COOKIE = preload("res://sprites/bubbles/bubble-cookie.png")
 const BUBBLE_TEA = preload("res://sprites/bubbles/bubble-tea.png")
 const BUBBLE_MONEY = preload("res://sprites/bubbles/bubble-money.png")
+const BUBBLE_UP = preload("res://sprites/bubbles/bubble-up.png")
+const BUBBLE_DOWN = preload("res://sprites/bubbles/bubble-down.png")
 
 @export var cats: Array[PackedScene]
 
@@ -18,6 +20,7 @@ const BUBBLE_MONEY = preload("res://sprites/bubbles/bubble-money.png")
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
 @onready var timer: Timer = $Timer
 @onready var progress_bar: TextureProgressBar = $Control/TextureProgressBar
+@onready var bubble_timer: Timer = $BubbleTimer
 
 var order:int
 var order_done: bool = false
@@ -77,3 +80,11 @@ func _show_order():
 		2:
 			bubble.texture = BUBBLE_COOKIE
 	bubble.show()
+
+func free_self():
+	if (order_done):
+		bubble.texture = BUBBLE_UP
+	else:
+		bubble.texture = BUBBLE_DOWN
+	bubble_timer.timeout.connect(queue_free)
+	bubble_timer.start()

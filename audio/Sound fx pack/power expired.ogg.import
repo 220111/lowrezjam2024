@@ -1,0 +1,19 @@
+[remap]
+
+importer="oggvorbisstr"
+type="AudioStreamOggVorbis"
+uid="uid://viqguh3qlaei"
+path="res://.godot/imported/power expired.ogg-6dd962563a3ef7ca4b6fac0fcb9e7f74.oggvorbisstr"
+
+[deps]
+
+source_file="res://audio/Sound fx pack/power expired.ogg"
+dest_files=["res://.godot/imported/power expired.ogg-6dd962563a3ef7ca4b6fac0fcb9e7f74.oggvorbisstr"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

@@ -9,6 +9,8 @@ enum Mode {
 	MONEY
 }
 
+signal game_over
+
 const CAT = preload("res://scenes/cat.tscn")
 
 @onready var player: Player = $CharacterBody2D
@@ -17,10 +19,18 @@ const CAT = preload("res://scenes/cat.tscn")
 
 @export var cat_spots: Array[Vector2]
 
+@onready var register: Tool = $Register
+@onready var tea: Tool = $Tea
+@onready var coffee: Tool = $Coffee
+@onready var cookie_case: Tool = $CookieCase
+@onready var health_progress_bar: TextureProgressBar = $UI/HealthProgressBar
+
+
 var mode: Mode = Mode.NONE
 var cats: Array[Cat] = []
 var orders_done: Array[int] = []
 var score: int = 0
+var lives: int = 3
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -29,7 +39,6 @@ func _ready() -> void:
 	cats.resize(cat_spots.size())
 	_spawn_cat()
 	cat_timer.timeout.connect(_spawn_cat)
-	
 
 
 func run_action():
@@ -40,12 +49,16 @@ func run_action():
 	match mode:
 		Mode.COFFEE:
 			ui.progress_done.connect(player.add_coffee, CONNECT_ONE_SHOT)
+			coffee.play_fx()
 		Mode.TEA:
 			ui.progress_done.connect(player.add_tea, CONNECT_ONE_SHOT)
+			tea.play_fx()
 		Mode.COOKIE:
 			ui.progress_done.connect(player.add_cookie, CONNECT_ONE_SHOT)
+			cookie_case.play_fx()
 		Mode.MONEY:
 			ui.progress_done.connect(_clear_paid_cats, CONNECT_ONE_SHOT)
+			register.play_fx()
 		_:
 			print("unimplemented")
 	ui.start_progress()
@@ -81,13 +94,21 @@ func _spawn_cat():
 	var cat := CAT.instantiate();
 	cat.global_position = cat_spots[spawn_spot]
 	cats[spawn_spot] = cat
-	cat.order_incorrect.connect(clear_cat.bind(spawn_spot), CONNECT_ONE_SHOT)
+	cat.order_incorrect.connect(failed_cat.bind(spawn_spot), CONNECT_ONE_SHOT)
 	cat.order_filled.connect(order_success.bind(spawn_spot), CONNECT_ONE_SHOT)
 	add_child(cat)
 
+func failed_cat(index: int):
+	if(cats[index]):
+		lives -= 1;
+		health_progress_bar.value = lives
+		if (lives <= 0):
+			game_over.emit(score)
+		clear_cat(index)
+
 func clear_cat(index: int):
 	if(cats[index]):
-		cats[index].queue_free()
+		cats[index].free_self()
 		cats[index] = null
 
 func order_success(index: int):
@@ -95,7 +116,7 @@ func order_success(index: int):
 
 func _clear_paid_cats():
 	for i in orders_done:
-		score += 1
+		score += 100
 		clear_cat(i)
 	orders_done.clear()
 	ui.update_score(score)

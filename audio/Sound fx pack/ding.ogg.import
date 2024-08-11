@@ -1,0 +1,19 @@
+[remap]
+
+importer="oggvorbisstr"
+type="AudioStreamOggVorbis"
+uid="uid://wr74oa30yw4g"
+path="res://.godot/imported/ding.ogg-85edd684a2c2f1d70020bd532ff88935.oggvorbisstr"
+
+[deps]
+
+source_file="res://audio/Sound fx pack/ding.ogg"
+dest_files=["res://.godot/imported/ding.ogg-85edd684a2c2f1d70020bd532ff88935.oggvorbisstr"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

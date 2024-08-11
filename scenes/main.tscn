@@ -1,7 +1,83 @@
-[gd_scene load_steps=3 format=3 uid="uid://hodfqsu7vxtr"]
+[gd_scene load_steps=7 format=3 uid="uid://hodfqsu7vxtr"]
 
 [ext_resource type="PackedScene" uid="uid://dwa2408mes0a0" path="res://scenes/start_menu.tscn" id="1_67nle"]
 [ext_resource type="Script" path="res://scenes/main.gd" id="1_x4wih"]
+[ext_resource type="Texture2D" uid="uid://bhwcspe2owwxg" path="res://sprites/Splash page keek dawg.png" id="3_ncg77"]
+
+[sub_resource type="Animation" id="Animation_whp01"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("TextureRect:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(0, 0, 0, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("StartMenu:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(0, 0, 0, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_cvohh"]
+resource_name = "splash"
+length = 5.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("TextureRect:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.533333, 2.5, 3),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Color(0, 0, 0, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(0, 0, 0, 1)]
+}
+tracks/1/type = "method"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("TextureRect")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(3),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"queue_free"
+}]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("StartMenu:modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(3, 3.53333),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(0, 0, 0, 1), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_jxunw"]
+_data = {
+"RESET": SubResource("Animation_whp01"),
+"splash": SubResource("Animation_cvohh")
+}
 
 [node name="Main" type="Node2D"]
 script = ExtResource("1_x4wih")
@@ -13,5 +89,28 @@ offset_right = 64.0
 offset_bottom = 64.0
 
 [node name="StartMenu" parent="UI" instance=ExtResource("1_67nle")]
+modulate = Color(0, 0, 0, 1)
 layout_mode = 1
 size_flags_horizontal = 4
+
+[node name="TextureRect" type="TextureRect" parent="UI"]
+modulate = Color(0, 0, 0, 1)
+z_index = 5
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("3_ncg77")
+
+[node name="Timer" type="Timer" parent="UI"]
+wait_time = 5.0
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="UI"]
+libraries = {
+"": SubResource("AnimationLibrary_jxunw")
+}
+autoplay = "splash"
+
+[connection signal="timeout" from="UI/Timer" to="UI/TextureRect" method="queue_free"]
