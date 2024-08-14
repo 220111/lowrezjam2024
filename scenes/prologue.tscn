@@ -1,7 +1,8 @@
-[gd_scene load_steps=17 format=3 uid="uid://cpcn5bkhldmsl"]
+[gd_scene load_steps=18 format=3 uid="uid://cpcn5bkhldmsl"]
 
 [ext_resource type="Script" path="res://prologue.gd" id="1_5to5i"]
 [ext_resource type="Texture2D" uid="uid://cl3g7whdk6cax" path="res://sprites/prologue girl.png" id="2_3iaqt"]
+[ext_resource type="AudioStream" uid="uid://ci2tmkyboinvi" path="res://audio/Bartender.mp3" id="3_65qtq"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_igjyr"]
 atlas = ExtResource("2_3iaqt")
@@ -121,3 +122,7 @@ offset_left = 47.0
 offset_top = 49.0
 offset_right = 64.0
 offset_bottom = 64.0
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_65qtq")
+autoplay = true
