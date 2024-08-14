@@ -15,6 +15,6 @@ func _start_trans():
 	animation_player.animation_finished.connect(anim_done)
 	animation_player.play("transition")
 
-func anim_done(name:String) -> void:
-	if(name == "transition"):
+func anim_done(anim_name:String) -> void:
+	if(anim_name == "transition"):
 		start.emit();

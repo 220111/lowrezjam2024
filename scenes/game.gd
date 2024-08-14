@@ -25,7 +25,7 @@ const CAT = preload("res://scenes/cat.tscn")
 @onready var cookie_case: Tool = $CookieCase
 @onready var health_progress_bar: TextureProgressBar = $UI/HealthProgressBar
 
-
+var cat_waittime: float = 45.0;
 var mode: Mode = Mode.NONE
 var cats: Array[Cat] = []
 var orders_done: Array[int] = []
@@ -44,6 +44,8 @@ func _ready() -> void:
 func run_action():
 	if(player.is_in_action_mode()):
 		return
+	if(mode == Mode.NONE):
+		return
 	player.start_action_mode()
 	ui.progress_done.connect(player.end_action_mode, CONNECT_ONE_SHOT)
 	match mode:
@@ -60,7 +62,7 @@ func run_action():
 			ui.progress_done.connect(_clear_paid_cats, CONNECT_ONE_SHOT)
 			register.play_fx()
 		_:
-			print("unimplemented")
+			printerr("unimplemented action")
 	ui.start_progress()
 
 #func _process(delta: float) -> void:
@@ -97,6 +99,9 @@ func _spawn_cat():
 	cat.order_incorrect.connect(failed_cat.bind(spawn_spot), CONNECT_ONE_SHOT)
 	cat.order_filled.connect(order_success.bind(spawn_spot), CONNECT_ONE_SHOT)
 	add_child(cat)
+	print(cat_waittime)
+	cat.init_timer(cat_waittime)
+	cat_waittime *= 0.98;
 
 func failed_cat(index: int):
 	if(cats[index]):
@@ -109,7 +114,13 @@ func failed_cat(index: int):
 func clear_cat(index: int):
 	if(cats[index]):
 		cats[index].free_self()
+		cats[index].death_anim_done.connect(cat_gone.bind(index))
+
+func cat_gone(index: int):
+	if(cats[index]):
+		cats[index].queue_free()
 		cats[index] = null
+		
 
 func order_success(index: int):
 	orders_done.append(index)

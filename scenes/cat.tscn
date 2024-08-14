@@ -96,7 +96,6 @@ tint_under = Color(0.996347, 0.000658862, 0.0400719, 1)
 [node name="Timer" type="Timer" parent="."]
 wait_time = 45.0
 one_shot = true
-autostart = true
 
 [node name="BubbleTimer" type="Timer" parent="."]
 one_shot = true

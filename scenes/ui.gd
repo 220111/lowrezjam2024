@@ -18,8 +18,8 @@ func start_progress():
 	texture_progress_bar.show()
 	animation_player.play("progress bar")
 
-func _anim_done(name: StringName) -> void:
-	if(name == "progress bar"):
+func _anim_done(anim_name: StringName) -> void:
+	if(anim_name == "progress bar"):
 		texture_progress_bar.hide()
 		progress_done.emit()
 

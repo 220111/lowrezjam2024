@@ -22,7 +22,7 @@ var action_mode := false
 func _ready() -> void:
 	items_updated.emit(items)
 
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	if(Input.is_action_just_pressed("action")):
 		action_pressed.emit()
 	elif (action_mode == false):
@@ -55,7 +55,7 @@ func get_input():
 	if(action_mode):
 		velocity.x = 0;
 
-func _physics_process(delta):
+func _physics_process(_delta):
 	get_input()
 	move_and_slide()
 

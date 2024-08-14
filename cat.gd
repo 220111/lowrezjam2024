@@ -5,6 +5,7 @@ extends Node2D
 
 signal order_filled
 signal order_incorrect
+signal death_anim_done
 
 const BUBBLE_COFFEE = preload("res://sprites/bubbles/bubble-coffee.png")
 const BUBBLE_COOKIE = preload("res://sprites/bubbles/bubble-cookie.png")
@@ -36,12 +37,15 @@ func _ready() -> void:
 	_select_order()
 	_show_order()
 
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	if(order_done):
 		timer.paused = true
 		progress_bar.hide()
 	else:
 		progress_bar.value = (timer.time_left/timer.wait_time)*6
+
+func init_timer(time: float):
+	timer.start(time)
 
 func check_collision(body: Node2D) -> void:
 	if order_done:
@@ -86,5 +90,5 @@ func free_self():
 		bubble.texture = BUBBLE_UP
 	else:
 		bubble.texture = BUBBLE_DOWN
-	bubble_timer.timeout.connect(queue_free)
+	bubble_timer.timeout.connect(death_anim_done.emit)
 	bubble_timer.start()
